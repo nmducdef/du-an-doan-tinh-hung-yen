@@ -136,10 +136,34 @@ const FormDienNguoiDung = () => {
           scale: 2
         })
 
+        const response = await fetch(dataUrl)
+        const blob = await response.blob()
+        const file = new File([blob], `loi-nhan-dai-hoi-${formData.hoVaTen.replace(/\s+/g, '-')}.png`, {
+          type: 'image/png'
+        })
+
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              files: [file],
+              title: 'Lời nhắn đại hội',
+              text: 'Chia sẻ lời nhắn của tôi'
+            })
+            message.success({ content: 'Đã chia sẻ thành công!', key: 'download' })
+            return
+          } catch (err) {
+            console.log(err)
+          }
+        }
+
+        const url = URL.createObjectURL(blob)
         const link = document.createElement('a')
-        link.href = dataUrl
+        link.href = url
         link.download = `loi-nhan-dai-hoi-${formData.hoVaTen.replace(/\s+/g, '-')}.png`
+        document.body.appendChild(link)
         link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(url)
         message.success({ content: 'Tải ảnh thành công!', key: 'download' })
       }
     } catch (error) {
@@ -307,7 +331,7 @@ const FormDienNguoiDung = () => {
             {formData.hoVaTen && (
               <div className='absolute top-[70%] left-[9%] w-[17%] text-center flex items-center justify-center'>
                 <p
-                  className='text-white font-bold text-[19px] uppercase leading-tight whitespace-nowrap'
+                  className='text-white font-bold text-[8px] sm:text-[10px] md:text-[14px] lg:text-[19px] uppercase leading-tight whitespace-nowrap'
                   style={{
                     transform:
                       formData.hoVaTen.length > 15 ? `scale(${Math.max(0.6, 15 / formData.hoVaTen.length)})` : 'none',
@@ -321,19 +345,25 @@ const FormDienNguoiDung = () => {
 
             {formData.chucVu && (
               <div className='absolute top-[78%] left-[9%] w-[17%] text-center'>
-                <p className='text-white text-[11px] italic break-words leading-tight'>{formData.chucVu}</p>
+                <p className='text-white text-[6px] sm:text-[7px] md:text-[9px] lg:text-[11px] italic break-words leading-tight'>
+                  {formData.chucVu}
+                </p>
               </div>
             )}
 
             {formData.phongBan && (
               <div className='absolute top-[84%] left-[9%] w-[17%] text-center'>
-                <p className='text-white text-[11px] italic break-words leading-tight'>{formData.phongBan}</p>
+                <p className='text-white text-[6px] sm:text-[7px] md:text-[9px] lg:text-[11px] italic break-words leading-tight'>
+                  {formData.phongBan}
+                </p>
               </div>
             )}
 
             {formData.loiNhan && (
-              <div className='absolute top-[29%] left-[36%] right-[5%] p-4'>
-                <p className='text-white text-sm leading-relaxed break-words'>{formData.loiNhan}</p>
+              <div className='absolute top-[29%] left-[36%] right-[5%] p-2 sm:p-3 md:p-4'>
+                <p className='text-white text-[6px] sm:text-[8px] md:text-[11px] lg:text-[14px] leading-relaxed break-words'>
+                  {formData.loiNhan}
+                </p>
               </div>
             )}
           </div>
