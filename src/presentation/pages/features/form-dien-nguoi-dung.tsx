@@ -138,23 +138,6 @@ const FormDienNguoiDung = () => {
 
         const response = await fetch(dataUrl)
         const blob = await response.blob()
-        const file = new File([blob], `loi-nhan-dai-hoi-${formData.hoVaTen.replace(/\s+/g, '-')}.png`, {
-          type: 'image/png'
-        })
-
-        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-          try {
-            await navigator.share({
-              files: [file],
-              title: 'Lời nhắn đại hội',
-              text: 'Chia sẻ lời nhắn của tôi'
-            })
-            message.success({ content: 'Đã chia sẻ thành công!', key: 'download' })
-            return
-          } catch (err) {
-            console.log(err)
-          }
-        }
 
         const url = URL.createObjectURL(blob)
         const link = document.createElement('a')
@@ -164,6 +147,7 @@ const FormDienNguoiDung = () => {
         link.click()
         document.body.removeChild(link)
         URL.revokeObjectURL(url)
+
         message.success({ content: 'Tải ảnh thành công!', key: 'download' })
       }
     } catch (error) {
@@ -173,7 +157,7 @@ const FormDienNguoiDung = () => {
   }
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-purple-500 via-purple-600 to-blue-600 p-4 md:p-8'>
+    <div className='min-h-screen bg-gradient-to-br from-[#8e44ad] to-[#3498db] p-4 md:p-8'>
       <input ref={fileInputRef} type='file' accept='image/*' className='hidden' onChange={handleImageSelect} />
 
       <Modal
@@ -214,22 +198,23 @@ const FormDienNguoiDung = () => {
       </Modal>
 
       <div className='text-center mb-6 md:mb-8'>
-        <h1 className='text-yellow-300 font-bold text-lg md:text-2xl lg:text-3xl px-4 leading-tight'>
-          CHÀO MỪNG ĐẠI HỘI ĐẠI BIỂU ĐOÀN TNCS HỒ CHÍ MINH TỈNH HƯNG YÊN LẦN THỨ XIII, NHIỆM KỲ 2025-2030
+        <h1 className='text-yellow-300 font-bold text-base md:text-xl lg:text-2xl px-4 leading-tight'>
+          <div>CHÀO MỪNG ĐẠI HỘI ĐẠI BIỂU ĐOÀN TNCS HỒ CHÍ MINH TỈNH HƯNG YÊN</div>
+          <div>LẦN THỨ I, NHIỆM KỲ 2025-2030</div>
         </h1>
       </div>
 
       <div className='max-w-[80vw] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8'>
-        <div className='bg-white rounded-3xl shadow-2xl p-6 md:p-8 lg:p-10'>
-          <h2 className='text-2xl md:text-3xl font-bold text-gray-800 mb-6 md:mb-8 text-center'>Tạo thông điệp</h2>
+        <div className='bg-white rounded-3xl shadow-2xl p-3 md:p-3 lg:p-6'>
+          <h2 className='text-xl md:text-2xl font-bold text-gray-800 mb-6 md:mb-8 text-center'>Tạo thông điệp</h2>
 
-          <div className='space-y-5 md:space-y-6'>
+          <div className='space-y-2 md:space-y-3'>
             <div>
               <Button
                 type='primary'
-                size='large'
+                size='middle'
                 onClick={handleChooseImage}
-                className='w-full h-12 md:h-14 text-base md:text-lg font-semibold rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 border-0 hover:from-indigo-600 hover:to-purple-700'
+                className='w-full h-10 md:h-14 text-sm md:text-base font-semibold rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 border-0 hover:from-indigo-600 hover:to-purple-700'
               >
                 Chọn ảnh
               </Button>
@@ -237,7 +222,7 @@ const FormDienNguoiDung = () => {
 
             <div>
               <div className='mb-2'>
-                <span className='inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm md:text-base font-semibold'>
+                <span className='inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold'>
                   Họ và tên
                 </span>
               </div>
@@ -245,6 +230,7 @@ const FormDienNguoiDung = () => {
                 placeholder='Họ và tên...'
                 size='large'
                 className='rounded-xl h-12 md:h-14'
+                maxLength={50}
                 value={formData.hoVaTen}
                 onChange={(e) => setFormData({ ...formData, hoVaTen: e.target.value })}
               />
@@ -252,7 +238,7 @@ const FormDienNguoiDung = () => {
 
             <div>
               <div className='mb-2'>
-                <span className='inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm md:text-base font-semibold'>
+                <span className='inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold'>
                   Chức vụ
                 </span>
               </div>
@@ -261,6 +247,8 @@ const FormDienNguoiDung = () => {
                 size='large'
                 className='rounded-xl'
                 rows={2}
+                maxLength={100}
+                showCount
                 value={formData.chucVu}
                 onChange={(e) => setFormData({ ...formData, chucVu: e.target.value })}
               />
@@ -268,7 +256,7 @@ const FormDienNguoiDung = () => {
 
             <div>
               <div className='mb-2'>
-                <span className='inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm md:text-base font-semibold'>
+                <span className='inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold'>
                   Phòng ban
                 </span>
               </div>
@@ -277,6 +265,8 @@ const FormDienNguoiDung = () => {
                 size='large'
                 className='rounded-xl'
                 rows={2}
+                maxLength={100}
+                showCount
                 value={formData.phongBan}
                 onChange={(e) => setFormData({ ...formData, phongBan: e.target.value })}
               />
@@ -284,7 +274,7 @@ const FormDienNguoiDung = () => {
 
             <div>
               <div className='mb-2'>
-                <span className='inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm md:text-base font-semibold'>
+                <span className='inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold'>
                   Gửi lời nhắn đến đại hội
                 </span>
               </div>
@@ -293,6 +283,7 @@ const FormDienNguoiDung = () => {
                 size='large'
                 className='rounded-xl'
                 rows={5}
+                showCount
                 value={formData.loiNhan}
                 onChange={(e) => setFormData({ ...formData, loiNhan: e.target.value })}
               />
@@ -303,7 +294,7 @@ const FormDienNguoiDung = () => {
                 type='primary'
                 size='large'
                 onClick={handleSubmit}
-                className='w-full h-12 md:h-14 text-base md:text-lg font-semibold rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 border-0 hover:from-indigo-600 hover:to-purple-700'
+                className='w-full h-12 md:h-14 text-sm md:text-base font-semibold rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 border-0 hover:from-indigo-600 hover:to-purple-700'
               >
                 Tải lời nhắn về
               </Button>
@@ -329,12 +320,12 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.hoVaTen && (
-              <div className='absolute top-[70%] left-[9%] w-[17%] text-center flex items-center justify-center'>
+              <div className='absolute top-[71%] left-[9%] w-[17%] text-center flex items-center justify-center'>
                 <p
-                  className='text-white font-bold text-[8px] sm:text-[10px] md:text-[14px] lg:text-[19px] uppercase leading-tight whitespace-nowrap'
+                  className='text-white font-bold text-[6px] sm:text-[8px] md:text-[10px] lg:text-[12px] uppercase leading-tight whitespace-nowrap'
                   style={{
                     transform:
-                      formData.hoVaTen.length > 15 ? `scale(${Math.max(0.6, 15 / formData.hoVaTen.length)})` : 'none',
+                      formData.hoVaTen.length > 20 ? `scale(${Math.max(0.7, 20 / formData.hoVaTen.length)})` : 'none',
                     transformOrigin: 'center'
                   }}
                 >
@@ -344,24 +335,24 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.chucVu && (
-              <div className='absolute top-[78%] left-[9%] w-[17%] text-center'>
-                <p className='text-white text-[6px] sm:text-[7px] md:text-[9px] lg:text-[11px] italic break-words leading-tight'>
+              <div className='absolute top-[76%] left-[9%] w-[17%] text-center'>
+                <p className='text-white text-[5px] sm:text-[6px] md:text-[7px] lg:text-[9px] italic break-words leading-tight'>
                   {formData.chucVu}
                 </p>
               </div>
             )}
 
             {formData.phongBan && (
-              <div className='absolute top-[84%] left-[9%] w-[17%] text-center'>
-                <p className='text-white text-[6px] sm:text-[7px] md:text-[9px] lg:text-[11px] italic break-words leading-tight'>
+              <div className='absolute top-[80%] left-[9%] w-[17%] text-center'>
+                <p className='text-white text-[5px] sm:text-[6px] md:text-[7px] lg:text-[9px] italic break-words leading-tight'>
                   {formData.phongBan}
                 </p>
               </div>
             )}
 
             {formData.loiNhan && (
-              <div className='absolute top-[29%] left-[36%] right-[5%] p-2 sm:p-3 md:p-4'>
-                <p className='text-white text-[6px] sm:text-[8px] md:text-[11px] lg:text-[14px] leading-relaxed break-words'>
+              <div className='absolute top-[27%] left-[36%] right-[8%] p-3 sm:p-4 md:p-5'>
+                <p className='text-white text-[5px] sm:text-[6px] md:text-[8px] lg:text-[10px] leading-relaxed break-words text-justify indent-4'>
                   {formData.loiNhan}
                 </p>
               </div>
