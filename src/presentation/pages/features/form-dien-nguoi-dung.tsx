@@ -257,7 +257,7 @@ const FormDienNguoiDung = () => {
             <div>
               <div className='mb-2'>
                 <span className='inline-block bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold'>
-                  Phòng ban
+                  Đơn vị
                 </span>
               </div>
               <TextArea
