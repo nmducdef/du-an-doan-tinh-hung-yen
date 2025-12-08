@@ -134,7 +134,7 @@ const FormDienNguoiDung = () => {
         const dataUrl = await domToPng(previewRef.current, {
           quality: 1,
           scale: 6,
-          filter: (node) => true
+          filter: (_node) => true
         })
 
         const response = await fetch(dataUrl)
