@@ -336,7 +336,7 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.chucVu && (
-              <div className='absolute top-[77%] left-[9%] w-[17%] text-center'>
+              <div className='absolute top-[77.5%] left-[9%] w-[17%] text-center'>
                 <p className='text-white text-[5px] sm:text-[6px] md:text-[7px] lg:text-[9px] italic break-words leading-tight'>
                   {formData.chucVu}
                 </p>
@@ -353,7 +353,7 @@ const FormDienNguoiDung = () => {
 
             {formData.loiNhan && (
               <div className='absolute top-[26%] sm:top-[26%] lg:top-[26%] md:top-[27%] left-[36%] right-[8%] p-3 sm:p-4 md:p-5'>
-                <p className='text-white text-[3.5px] sm:text-[6px] md:text-[8px] lg:text-[10px] leading-relaxed break-words text-justify '>
+                <p className='text-white text-[4px] sm:text-[6px] md:text-[8px] lg:text-[10px] leading-relaxed break-words text-justify '>
                   {formData.loiNhan}
                 </p>
               </div>
