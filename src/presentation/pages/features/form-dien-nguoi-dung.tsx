@@ -133,7 +133,8 @@ const FormDienNguoiDung = () => {
       if (previewRef.current) {
         const dataUrl = await domToPng(previewRef.current, {
           quality: 1,
-          scale: 2
+          scale: 6,
+          filter: (node) => true
         })
 
         const response = await fetch(dataUrl)
@@ -261,7 +262,7 @@ const FormDienNguoiDung = () => {
                 </span>
               </div>
               <TextArea
-                placeholder='Phòng ban...'
+                placeholder='Đơn vị...'
                 size='large'
                 className='rounded-xl'
                 rows={2}
@@ -320,7 +321,7 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.hoVaTen && (
-              <div className='absolute top-[71%] left-[9%] w-[17%] text-center flex items-center justify-center'>
+              <div className='absolute top-[73%] left-[9%] w-[17%] text-center flex items-center justify-center'>
                 <p
                   className='text-white font-bold text-[6px] sm:text-[8px] md:text-[10px] lg:text-[12px] uppercase leading-tight whitespace-nowrap'
                   style={{
@@ -335,7 +336,7 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.chucVu && (
-              <div className='absolute top-[76%] left-[9%] w-[17%] text-center'>
+              <div className='absolute top-[77%] left-[9%] w-[17%] text-center'>
                 <p className='text-white text-[5px] sm:text-[6px] md:text-[7px] lg:text-[9px] italic break-words leading-tight'>
                   {formData.chucVu}
                 </p>
@@ -343,7 +344,7 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.phongBan && (
-              <div className='absolute top-[80%] left-[9%] w-[17%] text-center'>
+              <div className='absolute top-[81%] left-[9%] w-[17%] text-center'>
                 <p className='text-white text-[5px] sm:text-[6px] md:text-[7px] lg:text-[9px] italic break-words leading-tight'>
                   {formData.phongBan}
                 </p>
@@ -351,8 +352,8 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.loiNhan && (
-              <div className='absolute top-[27%] left-[36%] right-[8%] p-3 sm:p-4 md:p-5'>
-                <p className='text-white text-[5px] sm:text-[6px] md:text-[8px] lg:text-[10px] leading-relaxed break-words text-justify indent-4'>
+              <div className='absolute top-[26%] sm:top-[26%] lg:top-[26%] md:top-[27%] left-[36%] right-[8%] p-3 sm:p-4 md:p-5'>
+                <p className='text-white text-[3.5px] sm:text-[6px] md:text-[8px] lg:text-[10px] leading-relaxed break-words text-justify '>
                   {formData.loiNhan}
                 </p>
               </div>
