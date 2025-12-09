@@ -285,6 +285,7 @@ const FormDienNguoiDung = () => {
                 className='rounded-xl'
                 rows={5}
                 showCount
+                maxLength={600}
                 value={formData.loiNhan}
                 onChange={(e) => setFormData({ ...formData, loiNhan: e.target.value })}
               />
@@ -321,7 +322,7 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.hoVaTen && (
-              <div className='absolute top-[73%] left-[9%] w-[17%] text-center flex items-center justify-center'>
+              <div className='absolute top-[73%] left-[7.88%] w-[19%] text-center flex items-center justify-center'>
                 <p
                   className='text-white font-bold text-[6px] sm:text-[8px] md:text-[10px] lg:text-[12px] uppercase leading-tight whitespace-nowrap'
                   style={{
@@ -338,17 +339,19 @@ const FormDienNguoiDung = () => {
             {formData.chucVu && (
               <div className='absolute top-[77.5%] left-[7.88%] w-[19%] flex items-center justify-center'>
                 <p
-                  className='text-white italic text-center text-[3px] sm:text-[6px] md:text-[7px] lg:text-[6px]'
+                  className='text-white italic text-[4px] sm:!text-[10px] md:text-[6px] lg:text-[7px] text-center leading-tight'
                   style={{
-                    lineHeight: '1.3',
                     wordBreak: 'break-word',
                     whiteSpace: 'normal',
                     display: '-webkit-box',
-                    WebkitLineClamp: 2,
+                    WebkitLineClamp: 3,
                     WebkitBoxOrient: 'vertical',
                     overflow: 'hidden',
                     textAlign: 'center',
-                    width: '100%'
+                    width: '100%',
+                    transform:
+                      formData.chucVu.length > 40 ? `scale(${Math.max(0.8, 40 / formData.chucVu.length)})` : 'none',
+                    transformOrigin: 'center'
                   }}
                 >
                   {formData.chucVu}
@@ -357,19 +360,21 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.phongBan && (
-              <div className='absolute top-[82%] left-[7.88%] w-[19%] flex items-center justify-center'>
+              <div className='absolute top-[83.2%] left-[7.88%] w-[19%] flex items-center justify-center'>
                 <p
-                  className='text-white italic text-center text-[3px] sm:text-[6px] md:text-[7px] lg:text-[6px]'
+                  className='text-white italic text-[4px] sm:!text-[8px] md:text-[6px] lg:text-[7px] text-center leading-tight'
                   style={{
-                    lineHeight: '1.3',
                     wordBreak: 'break-word',
                     whiteSpace: 'normal',
                     display: '-webkit-box',
-                    WebkitLineClamp: 2,
+                    WebkitLineClamp: 3,
                     WebkitBoxOrient: 'vertical',
                     overflow: 'hidden',
                     textAlign: 'center',
-                    width: '100%'
+                    width: '100%',
+                    transform:
+                      formData.phongBan.length > 40 ? `scale(${Math.max(0.8, 40 / formData.phongBan.length)})` : 'none',
+                    transformOrigin: 'center'
                   }}
                 >
                   {formData.phongBan}
