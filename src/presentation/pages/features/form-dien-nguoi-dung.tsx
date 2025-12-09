@@ -336,16 +336,42 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.chucVu && (
-              <div className='absolute top-[77.5%] left-[9%] w-[17%] text-center'>
-                <p className='text-white text-[5px] sm:text-[6px] md:text-[7px] lg:text-[9px] italic break-words leading-tight'>
+              <div className='absolute top-[77.5%] left-[7.88%] w-[19%] flex items-center justify-center'>
+                <p
+                  className='text-white italic text-center text-[3px] sm:text-[6px] md:text-[7px] lg:text-[6px]'
+                  style={{
+                    lineHeight: '1.3',
+                    wordBreak: 'break-word',
+                    whiteSpace: 'normal',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    textAlign: 'center',
+                    width: '100%'
+                  }}
+                >
                   {formData.chucVu}
                 </p>
               </div>
             )}
 
             {formData.phongBan && (
-              <div className='absolute top-[81%] left-[9%] w-[17%] text-center'>
-                <p className='text-white text-[5px] sm:text-[6px] md:text-[7px] lg:text-[9px] italic break-words leading-tight'>
+              <div className='absolute top-[82%] left-[7.88%] w-[19%] flex items-center justify-center'>
+                <p
+                  className='text-white italic text-center text-[3px] sm:text-[6px] md:text-[7px] lg:text-[6px]'
+                  style={{
+                    lineHeight: '1.3',
+                    wordBreak: 'break-word',
+                    whiteSpace: 'normal',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    textAlign: 'center',
+                    width: '100%'
+                  }}
+                >
                   {formData.phongBan}
                 </p>
               </div>
