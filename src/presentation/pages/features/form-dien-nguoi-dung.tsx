@@ -337,14 +337,14 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.chucVu && (
-              <div className='absolute top-[77.5%] left-[7.88%] w-[19%] flex items-center justify-center'>
+              <div className='absolute top-[77.5%] left-[7.88%] w-[19%] h-[4%] flex items-center justify-center'>
                 <p
                   className='text-white italic text-[4px] sm:!text-[10px] md:text-[6px] lg:text-[7px] text-center leading-tight'
                   style={{
                     wordBreak: 'break-word',
                     whiteSpace: 'normal',
                     display: '-webkit-box',
-                    WebkitLineClamp: 3,
+                    WebkitLineClamp: 2,
                     WebkitBoxOrient: 'vertical',
                     overflow: 'hidden',
                     textAlign: 'center',
@@ -360,14 +360,19 @@ const FormDienNguoiDung = () => {
             )}
 
             {formData.phongBan && (
-              <div className='absolute top-[83.2%] left-[7.88%] w-[19%] flex items-center justify-center'>
+              <div
+                className='absolute left-[7.88%] w-[19%] h-[4%] flex items-center justify-center'
+                style={{
+                  top: formData.chucVu.length > 25 ? '82.5%' : '81%'
+                }}
+              >
                 <p
                   className='text-white italic text-[4px] sm:!text-[8px] md:text-[6px] lg:text-[7px] text-center leading-tight'
                   style={{
                     wordBreak: 'break-word',
                     whiteSpace: 'normal',
                     display: '-webkit-box',
-                    WebkitLineClamp: 3,
+                    WebkitLineClamp: 2,
                     WebkitBoxOrient: 'vertical',
                     overflow: 'hidden',
                     textAlign: 'center',
